@@ -9,16 +9,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(DEBUG=(bool, False))
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DEBUG")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 
-
-# Application definition
+AUTH_USER_MODEL = "account.CustomUser"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -111,6 +108,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MIGRATION_LINTER_OPTIONS = {
     "no_cache": True,
 }
-
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
