@@ -1,3 +1,5 @@
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView
@@ -6,7 +8,6 @@ from account.forms import SingupForm
 from account.service import SingupService, ConfirmSigupService
 
 
-# Create your views here.
 class SingupView(FormView):
     """View of registration in site"""
 
@@ -21,9 +22,20 @@ class SingupView(FormView):
 
 
 def singup_confirm(request, token):
-    """Cofirm of singup user in site"""
+    """Confirm of singup user in site"""
 
     if request.method == "GET":
         service = ConfirmSigupService(request, token)
         service.get()
-        return redirect(reverse("singup"))
+        return redirect(reverse("singin"))
+
+
+class SinginView(FormView):
+    form_class = AuthenticationForm
+    template_name = "singin.html"
+    success_url = reverse_lazy("singin")
+
+    def form_valid(self, form):
+        user = form.get_user()
+        login(self.request, user)
+        return redirect(self.get_success_url())

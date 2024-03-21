@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <form method="post" action="{% url "singin" %}">
+            {% csrf_token %}
+            <div class="input__item">
+                <i class="fa-solid fa-user"></i>
+                <input type="text"
+                       name="username"
+                       id="username"
+                       placeholder="Имя пользователя">
+            </div>
+            <div class="input__item">
+                <i class="fa-solid fa-lock"></i>
+                <input type="text" name="password" id="password" placeholder="Пароль">
+                <div class="forget_password">Забыли пароль?</div>
+                <button type="submit" class="site-btn">Вход</button>
+            </div>
+        </form>
+    </body>
+</html>
