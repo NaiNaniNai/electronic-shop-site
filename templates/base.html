@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
     <head>
         <title>Ministore</title>
@@ -10,8 +11,8 @@
         <meta name="author" content="">
         <meta name="keywords" content="">
         <meta name="description" content="">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
         <link rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +21,7 @@
               rel="stylesheet">
         <!-- script
     ================================================== -->
-        <script src="js/modernizr.js"></script>
+        <script src="{% static "js/modernizr.js" %}"></script>
     </head>
     <body data-bs-spy="scroll"
           data-bs-target="#navbar"
@@ -139,125 +140,7 @@
                 </ul>
             </div>
         </div>
-        <header id="header"
-                class="site-header header-scrolled position-fixed text-black bg-light">
-            <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="images/main-logo.png" class="logo">
-                    </a>
-                    <button class="navbar-toggler d-flex d-lg-none order-3 p-2"
-                            type="button"
-                            data-bs-toggle="offcanvas"
-                            data-bs-target="#bdNavbar"
-                            aria-controls="bdNavbar"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <svg class="navbar-icon">
-                            <use xlink:href="#navbar-icon"></use>
-                        </svg>
-                    </button>
-                    <div class="offcanvas offcanvas-end"
-                         tabindex="-1"
-                         id="bdNavbar"
-                         aria-labelledby="bdNavbarOffcanvasLabel">
-                        <div class="offcanvas-header px-4 pb-0">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="images/main-logo.png" class="logo">
-                            </a>
-                            <button type="button"
-                                    class="btn-close btn-close-black"
-                                    data-bs-dismiss="offcanvas"
-                                    aria-label="Close"
-                                    data-bs-target="#bdNavbar"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <ul id="navbar"
-                                class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
-                                <li class="nav-item">
-                                    <a class="nav-link me-4 active" href="#billboard">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link me-4" href="#company-services">Services</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link me-4" href="#mobile-products">Products</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link me-4" href="#smart-watches">Watches</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link me-4" href="#yearly-sale">Sale</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link me-4" href="#latest-blog">Blog</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link me-4 dropdown-toggle link-dark"
-                                       data-bs-toggle="dropdown"
-                                       href="#"
-                                       role="button"
-                                       aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="about.html" class="dropdown-item">About</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog.html" class="dropdown-item">Blog</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html" class="dropdown-item">Shop</a>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html" class="dropdown-item">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a href="single-post.html" class="dropdown-item">Single Post</a>
-                                        </li>
-                                        <li>
-                                            <a href="single-product.html" class="dropdown-item">Single Product</a>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html" class="dropdown-item">Contact</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <div class="user-items ps-5">
-                                        <ul class="d-flex justify-content-end list-unstyled">
-                                            <li class="search-item pe-3">
-                                                <a href="#" class="search-button">
-                                                    <svg class="search">
-                                                        <use xlink:href="#search"></use>
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li class="pe-3">
-                                                <a href="#">
-                                                    <svg class="user">
-                                                        <use xlink:href="#user"></use>
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="cart.html">
-                                                    <svg class="cart">
-                                                        <use xlink:href="#cart"></use>
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
+        {% include "include/header.html" %}
         <section id="billboard"
                  class="position-relative overflow-hidden bg-light-blue">
             <div class="swiper main-swiper">
@@ -274,7 +157,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="image-holder">
-                                        <img src="images/banner-image.png" alt="banner">
+                                        <img src="{% static "images/banner-image.png" %}" alt="banner">
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +175,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="image-holder">
-                                        <img src="images/banner-image.png" alt="banner">
+                                        <img src="{% static "images/banner-image.png" %}" alt="banner">
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +267,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item1.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item1.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -406,7 +289,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item2.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item2.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -428,7 +311,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item3.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item3.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -450,7 +333,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item4.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item4.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -472,7 +355,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item5.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item5.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -512,7 +395,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item6.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item6.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -534,7 +417,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item7.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item7.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -556,7 +439,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item8.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item8.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -578,7 +461,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item9.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item9.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -600,7 +483,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card position-relative">
                                     <div class="image-holder">
-                                        <img src="images/product-item10.jpg" alt="product-item" class="img-fluid">
+                                        <img src="{% static "images/product-item10.jpg" %}" alt="product-item" class="img-fluid">
                                     </div>
                                     <div class="cart-concern position-absolute">
                                         <div class="cart-button d-flex">
@@ -625,11 +508,7 @@
             </div>
             <div class="swiper-pagination position-absolute text-center"></div>
         </section>
-        <section id="yearly-sale"
-                 class="bg-light-blue overflow-hidden mt-5 padding-xlarge"
-                 style="background-image: url('images/single-image1.png');
-                        background-position: right;
-                        background-repeat: no-repeat">
+        <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('{% static "images/single-image1.png" %}'); background-position: right; background-repeat: no-repeat">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-md-6 col-sm-12">
                     <div class="text-content offset-4 padding-medium">
@@ -655,7 +534,7 @@
                         <div class="col-lg-4 col-sm-12">
                             <div class="card border-none me-3">
                                 <div class="card-image">
-                                    <img src="images/post-item1.jpg" alt="" class="img-fluid">
+                                    <img src="{% static "images/post-item1.jpg" %}" alt="" class="img-fluid">
                                 </div>
                             </div>
                             <div class="card-body text-uppercase">
@@ -671,7 +550,7 @@
                         <div class="col-lg-4 col-sm-12">
                             <div class="card border-none me-3">
                                 <div class="card-image">
-                                    <img src="images/post-item2.jpg" alt="" class="img-fluid">
+                                    <img src="{% static "images/post-item2.jpg" %}" alt="" class="img-fluid">
                                 </div>
                             </div>
                             <div class="card-body text-uppercase">
@@ -687,7 +566,7 @@
                         <div class="col-lg-4 col-sm-12">
                             <div class="card border-none me-3">
                                 <div class="card-image">
-                                    <img src="images/post-item3.jpg" alt="" class="img-fluid">
+                                    <img src="{% static "images/post-item3.jpg" %}" alt="" class="img-fluid">
                                 </div>
                             </div>
                             <div class="card-body text-uppercase">
@@ -827,7 +706,7 @@
                         <figure class="instagram-item pe-2">
                             <a href="https://templatesjungle.com/"
                                class="image-link position-relative">
-                                <img src="images/insta-item1.jpg" alt="instagram" class="insta-image">
+                                <img src="{% static "images/insta-item1.jpg" %}" alt="instagram" class="insta-image">
                                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                                     <svg class="instagram">
                                         <use xlink:href="#instagram"></use>
@@ -838,7 +717,7 @@
                         <figure class="instagram-item pe-2">
                             <a href="https://templatesjungle.com/"
                                class="image-link position-relative">
-                                <img src="images/insta-item2.jpg" alt="instagram" class="insta-image">
+                                <img src="{% static "images/insta-item2.jpg" %}" alt="instagram" class="insta-image">
                                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                                     <svg class="instagram">
                                         <use xlink:href="#instagram"></use>
@@ -849,7 +728,7 @@
                         <figure class="instagram-item pe-2">
                             <a href="https://templatesjungle.com/"
                                class="image-link position-relative">
-                                <img src="images/insta-item3.jpg" alt="instagram" class="insta-image">
+                                <img src="{% static "images/insta-item3.jpg" %}" alt="instagram" class="insta-image">
                                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                                     <svg class="instagram">
                                         <use xlink:href="#instagram"></use>
@@ -860,7 +739,7 @@
                         <figure class="instagram-item pe-2">
                             <a href="https://templatesjungle.com/"
                                class="image-link position-relative">
-                                <img src="images/insta-item4.jpg" alt="instagram" class="insta-image">
+                                <img src="{% static "images/insta-item4.jpg" %}" alt="instagram" class="insta-image">
                                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                                     <svg class="instagram">
                                         <use xlink:href="#instagram"></use>
@@ -871,7 +750,7 @@
                         <figure class="instagram-item pe-2">
                             <a href="https://templatesjungle.com/"
                                class="image-link position-relative">
-                                <img src="images/insta-item5.jpg" alt="instagram" class="insta-image">
+                                <img src="{% static "images/insta-item5.jpg" %}" alt="instagram" class="insta-image">
                                 <div class="icon-overlay position-absolute d-flex justify-content-center">
                                     <svg class="instagram">
                                         <use xlink:href="#instagram"></use>
@@ -883,155 +762,11 @@
                 </div>
             </div>
         </section>
-        <footer id="footer" class="overflow-hidden">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-top-area">
-                        <div class="row d-flex flex-wrap justify-content-between">
-                            <div class="col-lg-3 col-sm-6 pb-3">
-                                <div class="footer-menu">
-                                    <img src="images/main-logo.png" alt="logo">
-                                    <p>
-                                        Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa volutpat aenean odio erat nullam fringilla.
-                                    </p>
-                                    <div class="social-links">
-                                        <ul class="d-flex list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <svg class="facebook">
-                                                        <use xlink:href="#facebook" />
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <svg class="instagram">
-                                                        <use xlink:href="#instagram" />
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <svg class="twitter">
-                                                        <use xlink:href="#twitter" />
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <svg class="linkedin">
-                                                        <use xlink:href="#linkedin" />
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <svg class="youtube">
-                                                        <use xlink:href="#youtube" />
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-6 pb-3">
-                                <div class="footer-menu text-uppercase">
-                                    <h5 class="widget-title pb-2">Quick Links</h5>
-                                    <ul class="menu-list list-unstyled text-uppercase">
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Home</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">About</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Shop</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Blogs</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Contact</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 pb-3">
-                                <div class="footer-menu text-uppercase">
-                                    <h5 class="widget-title pb-2">Help & Info Help</h5>
-                                    <ul class="menu-list list-unstyled">
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Track Your Order</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Returns Policies</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Shipping + Delivery</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Contact Us</a>
-                                        </li>
-                                        <li class="menu-item pb-2">
-                                            <a href="#">Faqs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 pb-3">
-                                <div class="footer-menu contact-item">
-                                    <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-                                    <p>
-                                        Do you have any queries or suggestions? <a href="mailto:">yourinfo@gmail.com</a>
-                                    </p>
-                                    <p>
-                                        If you need support? Just give us a call. <a href="">+55 111 222 333 44</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-        </footer>
-        <div id="footer-bottom">
-            <div class="container">
-                <div class="row d-flex flex-wrap justify-content-between">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="Shipping d-flex">
-                            <p>We ship with:</p>
-                            <div class="card-wrap ps-2">
-                                <img src="images/dhl.png" alt="visa">
-                                <img src="images/shippingcard.png" alt="mastercard">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="payment-method d-flex">
-                            <p>Payment options:</p>
-                            <div class="card-wrap ps-2">
-                                <img src="images/visa.jpg" alt="visa">
-                                <img src="images/mastercard.jpg" alt="mastercard">
-                                <img src="images/paypal.jpg" alt="paypal">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="copyright">
-                            <p>
-                                © Copyright 2023 MiniStore. Design by <a href="https://templatesjungle.com/">TemplatesJungle</a> Distribution by <a href="https://themewagon.com">ThemeWagon</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="js/jquery-1.11.0.min.js"></script>
+        {% include "include/footer.html" %}
+        <script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="js/plugins.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/plugins.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/script.js" %}"></script>
     </body>
 </html>
