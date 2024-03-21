@@ -72,6 +72,10 @@ class Product(models.Model):
         blank=True, null=True, verbose_name="Цена по скидке"
     )
 
+    image = models.ImageField(
+        upload_to="product/", blank=True, null=True, verbose_name="Фотография"
+    )
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
