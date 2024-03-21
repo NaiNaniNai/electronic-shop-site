@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "django_migration_linter",
     "phonenumber_field",
     "account",
+    "shop",
 ]
 
 MIDDLEWARE = [
