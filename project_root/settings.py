@@ -108,3 +108,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MIGRATION_LINTER_OPTIONS = {
     "no_cache": True,
 }
+
+
+CASHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:16379/1",
+    }
+}

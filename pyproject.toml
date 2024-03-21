@@ -13,6 +13,7 @@ django-environ = "^0.11.2"
 django-migration-linter = "^5.0.0"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "^7.3.0"}
 psycopg2 = "^2.9.9"
+django-redis = "^5.4.0"
 
 
 [build-system]
