@@ -35,6 +35,16 @@ class ConfirmResetPasswordForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={"placeholder": "Повторите пароль"}),
     )
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        repeated_password = cleaned_data.get("repeated_password")
+
+        if password and repeated_password and password != repeated_password:
+            raise forms.ValidationError("Пароли не совпадают")
+
+        return cleaned_data
+
     class Meta:
         model = UserModel
         fields = ("password", "repeated_password")

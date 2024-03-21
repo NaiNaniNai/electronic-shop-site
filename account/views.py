@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django.shortcuts import redirect, render
@@ -32,7 +33,9 @@ def singup_confirm(request, token):
 
     if request.method == "GET":
         service = ConfirmSigupService(request, token)
-        service.get()
+        context = service.get()
+        if context:
+            return redirect(reverse("singup"))
         return redirect(reverse("singin"))
 
 
@@ -58,7 +61,9 @@ class ResetPasswordView(FormView):
 
     def form_valid(self, form):
         service = ResetPasswordService(self.request, form)
-        service.post()
+        context = service.post()
+        if context:
+            return render(self.request, "reset_password.html", context)
         return super().form_valid(form)
 
 
@@ -76,6 +81,8 @@ class ConfirmRestPasswordView(View):
         if form.is_valid():
             service = ConfirmResetPasswordService(request, form, token)
             context = service.post()
-            if not context:
-                return redirect(reverse("singin"))
-        return redirect(reverse("reset_password"))
+            if context:
+                return redirect(reverse("reset_password"))
+            return redirect(reverse("singin"))
+        messages.error(request, "Пароли не совпадают!")
+        return redirect(reverse("confirm_reset_password", kwargs={"token": token}))

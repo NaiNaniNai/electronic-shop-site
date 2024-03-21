@@ -5,6 +5,9 @@
         <title>Ministore shop</title>
     </head>
     <body>
+        <div class="messages">
+            {% for message in messages %}<div class="message-{{ message.tags }}">{{ message }}</div>{% endfor %}
+        </div>
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
