@@ -5,7 +5,6 @@ import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 env = environ.Env(DEBUG=(bool, False))
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
@@ -39,7 +38,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-
 ROOT_URLCONF = "project_root.urls"
 
 TEMPLATES = [
@@ -59,7 +57,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "project_root.wsgi.application"
-
 
 DATABASES = {
     "default": {
@@ -86,7 +83,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "Europe/Moscow"
@@ -102,13 +98,11 @@ STATICFILES_DIRS = [STATIC_DIR]
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MIGRATION_LINTER_OPTIONS = {
     "no_cache": True,
 }
-
 
 CASHES = {
     "default": {
@@ -116,3 +110,24 @@ CASHES = {
         "LOCATION": "redis://127.0.0.1:16379/1",
     }
 }
+
+# Email smtp setting
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_SSL = True
+
+REDIS_HOST = "127.0.0.1"
+REDIS_PORT = "16379"
+CELERY_BROKER_URL = "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/0"
+CELERY_BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 3600}
+CELERY_RESULT_BACKEND = "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/0"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "Europe/Moscow"
+
+# My variables
+USER_CONFIRMATION_KEY = "user_confirmation_{token}"
+USER_CONFIRMATION_TIMEOUT = 600

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ministore shop</title>
+    </head>
+    <body>
+        <div class="messages">
+            {% for message in messages %}<div class="message-{{ message.tags }}">{{ message }}</div>{% endfor %}
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input__item">
+                    <i class="fa-solid fa-{{ field.label }}"></i>
+                    {{ field.label }}{{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="site-btn">Зарегистрироваться!</button>
+        </form>
+    </body>
+</html>
