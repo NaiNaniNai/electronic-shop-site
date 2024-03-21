@@ -22,3 +22,19 @@ class SingupForm(UserCreationForm):
             "username",
             "email",
         )
+
+
+class ConfirmResetPasswordForm(forms.ModelForm):
+    """Form of confirm reset password user"""
+
+    password = forms.CharField(
+        label="lock", widget=forms.PasswordInput(attrs={"placeholder": "Новый пароль"})
+    )
+    repeated_password = forms.CharField(
+        label="lock",
+        widget=forms.PasswordInput(attrs={"placeholder": "Повторите пароль"}),
+    )
+
+    class Meta:
+        model = UserModel
+        fields = ("password", "repeated_password")

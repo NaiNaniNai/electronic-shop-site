@@ -15,3 +15,8 @@ class UserRepository:
         CustomUser.objects.create_user(
             username=username, email=email, password=password
         )
+
+    @staticmethod
+    def change_password(user, new_password):
+        user.set_password(new_password)
+        user.save()

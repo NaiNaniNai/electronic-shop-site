@@ -5,9 +5,9 @@ from project_root.celery import app
 
 
 @app.task
-def send_email_task(message, email):
+def send_email_task(title, message, email):
     send_mail(
-        "Подтвердите регистрацию",
+        title,
         message,
         settings.EMAIL_HOST_USER,
         [

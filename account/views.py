@@ -1,11 +1,17 @@
 from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import FormView
 
-from account.forms import SingupForm
-from account.service import SingupService, ConfirmSigupService
+from account.forms import SingupForm, ConfirmResetPasswordForm
+from account.service import (
+    SingupService,
+    ConfirmSigupService,
+    ResetPasswordService,
+    ConfirmResetPasswordService,
+)
 
 
 class SingupView(FormView):
@@ -31,6 +37,8 @@ def singup_confirm(request, token):
 
 
 class SinginView(FormView):
+    """View of login in site"""
+
     form_class = AuthenticationForm
     template_name = "singin.html"
     success_url = reverse_lazy("singin")
@@ -39,3 +47,35 @@ class SinginView(FormView):
         user = form.get_user()
         login(self.request, user)
         return redirect(self.get_success_url())
+
+
+class ResetPasswordView(FormView):
+    """View of user reset password"""
+
+    form_class = PasswordResetForm
+    template_name = "reset_password.html"
+    success_url = reverse_lazy("reset_password")
+
+    def form_valid(self, form):
+        service = ResetPasswordService(self.request, form)
+        service.post()
+        return super().form_valid(form)
+
+
+class ConfirmRestPasswordView(View):
+    """View of confirm reset password user"""
+
+    def get(self, request, token):
+        form = ConfirmResetPasswordForm
+        service = ConfirmResetPasswordService(request, form, token)
+        context = service.get()
+        return render(request, "confirm_reset_password.html", context)
+
+    def post(self, request, token):
+        form = ConfirmResetPasswordForm(request.POST)
+        if form.is_valid():
+            service = ConfirmResetPasswordService(request, form, token)
+            context = service.post()
+            if not context:
+                return redirect(reverse("singin"))
+        return redirect(reverse("reset_password"))
