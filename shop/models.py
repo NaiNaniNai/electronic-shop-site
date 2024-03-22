@@ -71,7 +71,6 @@ class Product(models.Model):
     discount_price = models.PositiveIntegerField(
         blank=True, null=True, verbose_name="Цена по скидке"
     )
-
     image = models.ImageField(
         upload_to="product/", blank=True, null=True, verbose_name="Фотография"
     )

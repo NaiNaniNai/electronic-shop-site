@@ -1,0 +1,22 @@
+.banner-image img{
+    width: 500px !important;
+    height: 500px !important;
+}
+
+.banner {
+    padding-top: 8.5em;
+}
+
+.product-item {
+    text-align: center;
+    display: block !important;
+}
+
+.product-item span {
+    display: block !important;
+}
+
+.is_discount {
+    text-decoration: line-through !important;
+    color: red !important;
+}
