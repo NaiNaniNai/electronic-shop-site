@@ -21,6 +21,9 @@ class Category(models.Model):
         blank=True,
         null=True,
     )
+    image = models.ImageField(
+        upload_to="category/", blank=True, null=True, verbose_name="Фотография"
+    )
 
     class Meta:
         verbose_name = "Категория"

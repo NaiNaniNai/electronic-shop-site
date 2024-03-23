@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section category_section">
+        <div class="container">
+            <div class="categories">
+                <div class="category_section_title">
+                    <div class="category_index_link">
+                        <a href="{% url "index" %}">
+                            <h2>Ministore</h2>
+                        </a>
+                    </div>
+                    <div class="category_section__title">
+                        <h2>Категории:</h2>
+                    </div>
+                </div>
+                <div class="category_section_body">
+                    {% for category in category_list %}
+                        <div class="category">
+                            <div class="category__image">
+                                <img src="{{ MEDIA_URL }}{{ category.image.url }}" alt="product">
+                            </div>
+                            <div class="category__name">
+                                <h5>{{ category.name }}</h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

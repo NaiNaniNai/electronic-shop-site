@@ -1,10 +1,18 @@
+/*---------------------
+  General style
+-----------------------*/
+
+.base_section {
+    padding-top: 8.5em;
+}
+
+/*---------------------
+  Index Page
+-----------------------*/
+
 .banner-image img{
     width: 500px !important;
     height: 500px !important;
-}
-
-.banner {
-    padding-top: 8.5em;
 }
 
 .product-item {
@@ -19,4 +27,42 @@
 .is_discount {
     text-decoration: line-through !important;
     color: red !important;
+}
+
+/*---------------------
+  Catalog Page
+-----------------------*/
+
+.category_section {
+    margin-bottom: 10em;
+}
+
+.categories {
+    display: block !important;
+}
+
+.category_section_title {
+    display: inline-flex;
+}
+
+.category_section_body {
+    padding-top: 2.5em;
+    display: inline-flex;
+}
+
+.category {
+    margin-left: 50px;
+}
+.category_section__title ::before {
+    content: "> ";
+}
+
+.category__image img {
+    width: 250px;
+    height: 250px;
+}
+
+.category__name {
+    padding-top: 1em;
+    text-align: center;
 }

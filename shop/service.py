@@ -1,4 +1,4 @@
-from shop.repository import IndexPageRepository
+from shop.repository import IndexPageRepository, CatalogRepository
 
 
 class IndexPageService:
@@ -29,5 +29,14 @@ class IndexPageService:
         }
 
 
-class BannerSectionService:
-    """Service for view in index page banner section"""
+class CatalogService:
+    """Service for view catalog page"""
+
+    def __init__(self, request):
+        self.request = request
+
+    def get(self) -> dict:
+        category_list = CatalogRepository.get_category_without_parent()
+        return {
+            "category_list": category_list,
+        }

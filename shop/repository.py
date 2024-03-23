@@ -1,6 +1,6 @@
 from django.db.models import QuerySet, Q
 
-from shop.models import Product
+from shop.models import Product, Category
 
 
 class IndexPageRepository:
@@ -23,3 +23,11 @@ class IndexPageRepository:
     @staticmethod
     def get_laptop_product() -> QuerySet[Product]:
         return Product.objects.filter(category__slug="laptop")[:4]
+
+
+class CatalogRepository:
+    """Class for interacting with category models"""
+
+    @staticmethod
+    def get_category_without_parent() -> QuerySet[Category]:
+        return Category.objects.filter(parent=None)
