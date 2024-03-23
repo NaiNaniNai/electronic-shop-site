@@ -10,4 +10,5 @@ urlpatterns = [
         views.CompositeCategoryView.as_view(),
         name="composite_category",
     ),
+    path("category/<str:slug>/", views.CategoryView.as_view(), name="category"),
 ]

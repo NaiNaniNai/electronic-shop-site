@@ -6,6 +6,10 @@
     padding-top: 8.5em;
 }
 
+.product__discount {
+    color: #13653f !important;
+}
+
 /*---------------------
   Index Page
 -----------------------*/
@@ -81,4 +85,29 @@
 
 .available_categories {
     text-align: center;
+}
+
+/*---------------------
+  Category Page
+-----------------------*/
+
+.category_compose_link {
+    display: inline-flex;
+}
+
+.category_compose_link h2::before {
+    content: "> ";
+}
+
+.product {
+    text-align: center;
+}
+
+.product__image img {
+    width: 250px;
+    height: 250px;
+}
+
+.product__price {
+    display: grid !important;
 }

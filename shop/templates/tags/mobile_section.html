@@ -25,7 +25,7 @@
                                     </h3>
                                     <span class="item-price text-primary {% if product.discount_price %}is_discount{% endif %}">{{ product.price }}</span>
                                     {% if product.discount_price %}
-                                        <span class="text-primary">Скидка: {{ product.discount }}%</span>
+                                        <span class="product__discount text-primary">Скидка: {{ product.discount }}%</span>
                                         <span class="item-price text-primary">{{ product.discount_price }}</span>
                                     {% endif %}
                                 </div>

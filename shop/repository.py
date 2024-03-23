@@ -37,9 +37,24 @@ class CompositeCategoryRepository:
     """Class for interacting with category models with parent"""
 
     @staticmethod
-    def get_category_by_slug(slug) -> Category:
+    def get_category_by_slug(slug: str) -> Category:
         return Category.objects.filter(Q(slug=slug) & Q(parent=None)).first()
 
     @staticmethod
-    def get_children(category):
+    def get_children(category: Category):
         return Category.objects.filter(parent=category)
+
+
+class CategoryRepository:
+    """Class for interacting with models in category page"""
+
+    @staticmethod
+    def get_by_slug(slug: str) -> Category | None:
+        category = Category.objects.filter(slug=slug).first()
+        if category and category.parent:
+            return category
+        return None
+
+    @staticmethod
+    def get_products(category: Category) -> QuerySet[Product]:
+        return Product.objects.filter(category=category)

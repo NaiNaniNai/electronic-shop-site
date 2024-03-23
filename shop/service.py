@@ -2,6 +2,7 @@ from shop.repository import (
     IndexPageRepository,
     CatalogRepository,
     CompositeCategoryRepository,
+    CategoryRepository,
 )
 
 
@@ -54,9 +55,25 @@ class CompositeCategoryService:
         self.slug = slug
 
     def get(self) -> dict:
-        category = CompositeCategoryRepository.get_category_by_slug(self.slug)
-        children = CompositeCategoryRepository.get_children(category)
+        composite_category = CompositeCategoryRepository.get_category_by_slug(self.slug)
+        children = CompositeCategoryRepository.get_children(composite_category)
+        return {
+            "composite_category": composite_category,
+            "children": children,
+        }
+
+
+class CategoryService:
+    """Service for view category and products this category"""
+
+    def __init__(self, request, slug):
+        self.request = (request,)
+        self.slug = slug
+
+    def get(self):
+        category = CategoryRepository.get_by_slug(self.slug)
+        products = CategoryRepository.get_products(category)
         return {
             "category": category,
-            "children": children,
+            "products": products,
         }

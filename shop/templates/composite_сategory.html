@@ -15,14 +15,14 @@
                         </a>
                     </div>
                     <div class="category_link">
-                        {% if category %}
-                            <h2>{{ category.name }}</h2>
+                        {% if composite_category %}
+                            <h2>{{ composite_category.name }}</h2>
                         {% else %}
                             <h2>Такой категории нет</h2>
                         {% endif %}
                     </div>
                 </div>
-                {% if not category %}
+                {% if not composite_category %}
                     <div class="available_categories">
                         <h2>Доступные категории:</h2>
                     </div>
@@ -34,9 +34,15 @@
                                 <img src="{{ MEDIA_URL }}{{ category.image.url }}" alt="product">
                             </div>
                             <div class="category__name">
-                                <a href="{% url "composite_category" category.slug %}">
-                                    <h5>{{ category.name }}</h5>
-                                </a>
+                                {% if not composite_category %}
+                                    <a href="{% url "composite_category" category.slug %}">
+                                        <h5>{{ category.name }}</h5>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url "category" category.slug %}">
+                                        <h5>{{ category.name }}</h5>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
