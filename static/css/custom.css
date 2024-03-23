@@ -38,7 +38,7 @@
 }
 
 .categories {
-    display: block !important;
+    display: grid !important;
 }
 
 .category_section_title {
@@ -64,5 +64,21 @@
 
 .category__name {
     padding-top: 1em;
+    text-align: center;
+}
+
+/*---------------------
+  Composite Category Page
+-----------------------*/
+
+.catalog_link h2::before {
+    content: "> ";
+}
+
+.category_link ::before {
+    content: "> ";
+}
+
+.available_categories {
     text-align: center;
 }

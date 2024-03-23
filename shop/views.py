@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from shop.service import CatalogService
+from shop.service import CatalogService, CompositeCategoryService
 
 
 class IndexPageView(View):
@@ -18,3 +18,12 @@ class CatalogView(View):
         service = CatalogService(request)
         context = service.get()
         return render(request, "catalog.html", context)
+
+
+class CompositeCategoryView(View):
+    """View of category with parent"""
+
+    def get(self, request, slug):
+        service = CompositeCategoryService(request, slug)
+        context = service.get()
+        return render(request, "composite_сategory.html", context)

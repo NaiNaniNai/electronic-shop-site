@@ -31,3 +31,15 @@ class CatalogRepository:
     @staticmethod
     def get_category_without_parent() -> QuerySet[Category]:
         return Category.objects.filter(parent=None)
+
+
+class CompositeCategoryRepository:
+    """Class for interacting with category models with parent"""
+
+    @staticmethod
+    def get_category_by_slug(slug) -> Category:
+        return Category.objects.filter(Q(slug=slug) & Q(parent=None)).first()
+
+    @staticmethod
+    def get_children(category):
+        return Category.objects.filter(parent=category)

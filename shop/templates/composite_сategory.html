@@ -9,12 +9,26 @@
                             <h2>Ministore</h2>
                         </a>
                     </div>
-                    <div class="category_section__title">
-                        <h2>Категории:</h2>
+                    <div class="catalog_link">
+                        <a href="{% url "catalog" %}">
+                            <h2>Категории</h2>
+                        </a>
+                    </div>
+                    <div class="category_link">
+                        {% if category %}
+                            <h2>{{ category.name }}</h2>
+                        {% else %}
+                            <h2>Такой категории нет</h2>
+                        {% endif %}
                     </div>
                 </div>
+                {% if not category %}
+                    <div class="available_categories">
+                        <h2>Доступные категории:</h2>
+                    </div>
+                {% endif %}
                 <div class="category_section_body">
-                    {% for category in category_list %}
+                    {% for category in children %}
                         <div class="category">
                             <div class="category__image">
                                 <img src="{{ MEDIA_URL }}{{ category.image.url }}" alt="product">
