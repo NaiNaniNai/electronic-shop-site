@@ -1,11 +1,12 @@
 from decimal import Decimal
 
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from shop.choices import CHARACTERISTICS, COLOR
 
-
+User = get_user_model()
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
 
 
@@ -90,4 +91,33 @@ class Product(models.Model):
             self.discount_price = int(self.price * (100 - self.discount) / 100)
         else:
             self.discount_price = None
+        super().save(*args, **kwargs)
+
+
+class UserCart(models.Model):
+    """Model of user's cart"""
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="cart", verbose_name="Пользователь"
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="cart", verbose_name="Товар"
+    )
+    quantity = models.PositiveIntegerField(default=0, verbose_name="Количество")
+    sum = models.PositiveIntegerField(
+        blank=True, null=True, default=0, verbose_name="Сумма заказа"
+    )
+
+    class Meta:
+        verbose_name = "Корзина пользователя"
+        verbose_name_plural = "Корзины пользователей"
+
+    def __str__(self):
+        return f"{self.user} {self.product.name} {self.quantity}"
+
+    def save(self, *args, **kwargs):
+        if self.product.discount:
+            self.sum = self.product.discount_price * self.quantity
+        else:
+            self.sum = self.product.price * self.quantity
         super().save(*args, **kwargs)
