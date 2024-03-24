@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 from shop.service import (
@@ -6,6 +7,7 @@ from shop.service import (
     CompositeCategoryService,
     CategoryService,
     ProductService,
+    UserCartService,
 )
 
 
@@ -50,3 +52,10 @@ class ProductView(View):
         service = ProductService(request, slug)
         context = service.get()
         return render(request, "product.html", context)
+
+
+def add_to_cart(request, product_slug):
+    if request.method == "GET":
+        service = UserCartService(request, product_slug)
+        service.get()
+    return redirect(reverse("product", kwargs={"slug": product_slug}))

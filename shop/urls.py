@@ -12,4 +12,7 @@ urlpatterns = [
     ),
     path("category/<str:slug>/", views.CategoryView.as_view(), name="category"),
     path("product/<str:slug>/", views.ProductView.as_view(), name="product"),
+    path(
+        "product/<str:product_slug>/add_to_cart/", views.add_to_cart, name="add_to_cart"
+    ),
 ]

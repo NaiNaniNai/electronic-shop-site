@@ -1,9 +1,13 @@
+from django.contrib import messages
+
+from account.repository import UserRepository
 from shop.repository import (
     IndexPageRepository,
     CatalogRepository,
     CompositeCategoryRepository,
     CategoryRepository,
     ProductRepository,
+    UserCartRepository,
 )
 
 
@@ -92,3 +96,21 @@ class ProductService:
         return {
             "product": product,
         }
+
+
+class UserCartService:
+    """Service for view user's cart"""
+
+    def __init__(self, request, product_slug):
+        self.request = request
+        self.product_slug = product_slug
+
+    def get(self) -> messages:
+        user = UserRepository.get_from_request(self.request)
+        product = ProductRepository.get_by_slug(self.product_slug)
+        user_cart = UserCartRepository.get_user_cart(user, product)
+        if not user_cart:
+            UserCartRepository.create_user_cart(user, product)
+        else:
+            UserCartRepository.increase_count_of_product(user, product)
+        return messages.success(self.request, "Вы добавили в корзину товар")
