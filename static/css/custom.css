@@ -10,6 +10,12 @@
     color: #13653f !important;
 }
 
+.base_button {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
 /*---------------------
   Index Page
 -----------------------*/
@@ -160,4 +166,68 @@
 .product_buy {
     margin-top: 5em;
     margin-left: 5em;
+}
+
+/*---------------------
+  Singin Page
+-----------------------*/
+
+.singin_section {
+    text-align: center;
+    margin-bottom: 15em;
+}
+
+.input__item {
+    margin-top: 0.5em;
+}
+
+.forget_password {
+    margin-top: 1em;
+}
+
+.singin_button {
+    margin-top: 1em;
+}
+
+/*---------------------
+  Singup Page
+-----------------------*/
+
+.singup_section {
+    text-align: center;
+    margin-bottom: 15em;
+}
+
+.singup_button {
+    margin-top: 1em;
+}
+
+/*---------------------
+  Reset Password Page
+-----------------------*/
+
+.reset_password_section {
+    text-align: center;
+    margin-bottom: 15em;
+}
+
+.reset_password_title {
+    margin-bottom: 1em;
+}
+
+.reset_password_button {
+    margin-top: 1em;
+}
+
+/*---------------------
+  Confirm Reset Password Page
+-----------------------*/
+
+.confirm_reset_password_section {
+    text-align: center;
+    margin-bottom: 15em;
+}
+
+.confirm_reset_password_button {
+    margin-top: 1em;
 }

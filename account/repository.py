@@ -20,3 +20,7 @@ class UserRepository:
     def change_password(user: User, new_password: str) -> None:
         user.set_password(new_password)
         user.save()
+
+    @staticmethod
+    def get_from_request(request) -> User:
+        return request.user
