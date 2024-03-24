@@ -8,6 +8,8 @@ from shop.service import (
     CategoryService,
     ProductService,
     UserCartService,
+    AddToUserCartService,
+    ChangeCountProductService,
 )
 
 
@@ -55,7 +57,36 @@ class ProductView(View):
 
 
 def add_to_cart(request, product_slug):
+    """Add product to user's cart"""
+
     if request.method == "GET":
-        service = UserCartService(request, product_slug)
+        service = AddToUserCartService(request, product_slug)
         service.get()
     return redirect(reverse("product", kwargs={"slug": product_slug}))
+
+
+class UserCart(View):
+    """View of user's cart"""
+
+    def get(self, request):
+        service = UserCartService(request)
+        context = service.get()
+        return render(request, "cart.html", context)
+
+
+def reduce_count_of_product(request, product_id):
+    """Reduce count of product in user's cart"""
+
+    if request.method == "GET":
+        service = ChangeCountProductService(request, product_id)
+        service.reduce()
+    return redirect(reverse("cart"))
+
+
+def increase_count_of_product(request, product_id):
+    """Increase count of product in user's cart"""
+
+    if request.method == "GET":
+        service = ChangeCountProductService(request, product_id)
+        service.increase()
+    return redirect(reverse("cart"))

@@ -68,12 +68,16 @@ class ProductRepository:
     def get_by_slug(slug: str) -> Product:
         return Product.objects.filter(slug=slug).first()
 
+    @staticmethod
+    def get_by_id(id: int) -> Product:
+        return Product.objects.filter(id=id).first()
+
 
 class UserCartRepository:
     """Class for interacting with models in user's cart"""
 
     @staticmethod
-    def get_user_cart(user: User, product: Product) -> UserCart:
+    def get_by_product(user: User, product: Product) -> UserCart:
         return UserCart.objects.filter(user=user, product=product).first()
 
     @staticmethod
@@ -82,6 +86,15 @@ class UserCartRepository:
 
     @staticmethod
     def increase_count_of_product(user: User, product: Product) -> None:
-        cart = UserCartRepository.get_user_cart(user, product)
+        cart = UserCartRepository.get_by_product(user, product)
         cart.quantity += 1
+        cart.save()
+
+    @staticmethod
+    def get_carts(user: User) -> QuerySet[UserCart]:
+        return UserCart.objects.filter(user=user).order_by("id")
+
+    @staticmethod
+    def reduce_count_of_product(cart: UserCart) -> None:
+        cart.quantity -= 1
         cart.save()
