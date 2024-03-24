@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
@@ -20,7 +20,7 @@ class SingupView(FormView):
 
     form_class = SingupForm
     template_name = "singup.html"
-    success_url = reverse_lazy("singup")
+    success_url = reverse_lazy("singin")
 
     def form_valid(self, form):
         service = SingupService(self.request, form)
@@ -44,7 +44,7 @@ class SinginView(FormView):
 
     form_class = AuthenticationForm
     template_name = "singin.html"
-    success_url = reverse_lazy("singin")
+    success_url = reverse_lazy("index")
 
     def form_valid(self, form):
         user = form.get_user()
@@ -86,3 +86,10 @@ class ConfirmRestPasswordView(View):
             return redirect(reverse("singin"))
         messages.error(request, "Пароли не совпадают!")
         return redirect(reverse("confirm_reset_password", kwargs={"token": token}))
+
+
+def logout_view(request):
+    """Logout from site"""
+
+    logout(request)
+    return redirect(reverse("singin"))

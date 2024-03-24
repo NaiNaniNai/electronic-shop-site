@@ -1,25 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
-        <form method="post" action="{% url "singin" %}">
-            {% csrf_token %}
-            <div class="input__item">
-                <i class="fa-solid fa-user"></i>
-                <input type="text"
-                       name="username"
-                       id="username"
-                       placeholder="Имя пользователя">
-            </div>
-            <div class="input__item">
-                <i class="fa-solid fa-lock"></i>
-                <input type="text" name="password" id="password" placeholder="Пароль">
-                <div class="forget_password">Забыли пароль?</div>
-                <button type="submit" class="site-btn">Вход</button>
-            </div>
-        </form>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section singin_section">
+        <div class="singin_title">
+            <h2>Вход на сайт</h2>
+            {% if user.is_authenticated %}
+                <h3>Вы уже авторизированы!</h3>
+                <a href="{% url "logout" %}">
+                    <h5>Выйти из аккаунта?</h5>
+                </a>
+            {% endif %}
+        </div>
+        {% if not user.is_authenticated %}
+            <form method="post" action="{% url "singin" %}">
+                {% csrf_token %}
+                <div class="input__item">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text"
+                           name="username"
+                           id="username"
+                           placeholder="Имя пользователя">
+                </div>
+                <div class="input__item">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="text" name="password" id="password" placeholder="Пароль">
+                </div>
+                <div class="forget_password">
+                    <a href="{% url "reset_password" %}">Забыли пароль?</a>
+                </div>
+                <div class="to_singup">
+                    Нет аккаунта?
+                    <a href="{% url "singup" %}">Зарегистрироваться</a>
+                </div>
+                <button type="submit" class="base_button singin_button">Вход</button>
+            </form>
+        {% endif %}
+    </section>
+{% endblock content %}
