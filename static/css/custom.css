@@ -111,3 +111,53 @@
 .product__price {
     display: grid !important;
 }
+
+/*---------------------
+  Product Page
+-----------------------*/
+
+.product_section {
+    margin-bottom: 10em;
+}
+
+.product_section_title {
+    display: inline-flex;
+}
+
+.product_category_compose_link {
+    display: inline-flex;
+}
+
+.product_category_compose_link h2::before {
+    content: "> ";
+}
+
+.product_catalog_link h2::before {
+    content: "> ";
+}
+
+.product_section_body {
+    display: inline-flex;
+}
+
+.product_main_info {
+    margin-left: 2em;
+}
+
+.product__price span {
+    font-size: 24px;
+}
+
+.product_characteristic {
+    display: inline-flex;
+    margin-left: 1em;
+}
+
+.product_characteristic__value {
+    margin-left: 1em;
+}
+
+.product_buy {
+    margin-top: 5em;
+    margin-left: 5em;
+}

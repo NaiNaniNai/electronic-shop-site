@@ -3,6 +3,7 @@ from shop.repository import (
     CatalogRepository,
     CompositeCategoryRepository,
     CategoryRepository,
+    ProductRepository,
 )
 
 
@@ -76,4 +77,18 @@ class CategoryService:
         return {
             "category": category,
             "products": products,
+        }
+
+
+class ProductService:
+    """Service for view product"""
+
+    def __init__(self, request, slug):
+        self.request = (request,)
+        self.slug = slug
+
+    def get(self):
+        product = ProductRepository.get_by_slug(self.slug)
+        return {
+            "product": product,
         }

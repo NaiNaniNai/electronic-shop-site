@@ -11,4 +11,5 @@ urlpatterns = [
         name="composite_category",
     ),
     path("category/<str:slug>/", views.CategoryView.as_view(), name="category"),
+    path("product/<str:slug>/", views.ProductView.as_view(), name="product"),
 ]

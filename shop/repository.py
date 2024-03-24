@@ -58,3 +58,11 @@ class CategoryRepository:
     @staticmethod
     def get_products(category: Category) -> QuerySet[Product]:
         return Product.objects.filter(category=category)
+
+
+class ProductRepository:
+    """Class for interacting with product model"""
+
+    @staticmethod
+    def get_by_slug(slug: str) -> Product:
+        return Product.objects.filter(slug=slug).first()
