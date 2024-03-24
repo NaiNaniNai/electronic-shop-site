@@ -21,6 +21,9 @@ class Category(models.Model):
         blank=True,
         null=True,
     )
+    image = models.ImageField(
+        upload_to="category/", blank=True, null=True, verbose_name="Фотография"
+    )
 
     class Meta:
         verbose_name = "Категория"
@@ -71,7 +74,6 @@ class Product(models.Model):
     discount_price = models.PositiveIntegerField(
         blank=True, null=True, verbose_name="Цена по скидке"
     )
-
     image = models.ImageField(
         upload_to="product/", blank=True, null=True, verbose_name="Фотография"
     )

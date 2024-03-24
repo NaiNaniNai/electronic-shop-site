@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load shop_tag %}
+    {% get_banner_section %}
+    <section id="company-services" class="padding-large">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 pb-3">
+                    <div class="icon-box d-flex">
+                        <div class="icon-box-icon pe-3 pb-3">
+                            <svg class="cart-outline">
+                                <use xlink:href="#cart-outline" />
+                            </svg>
+                        </div>
+                        <div class="icon-box-content">
+                            <h3 class="card-title text-uppercase text-dark">Бесплатная доставка</h3>
+                            <p>Бесплатная доставка по Краснодару при покупке от 2,000,000 рублей.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 pb-3">
+                    <div class="icon-box d-flex">
+                        <div class="icon-box-icon pe-3 pb-3">
+                            <svg class="quality">
+                                <use xlink:href="#quality" />
+                            </svg>
+                        </div>
+                        <div class="icon-box-content">
+                            <h3 class="card-title text-uppercase text-dark">Гарантия качества</h3>
+                            <p>Наша техника была украдена со складов Apple в Польше.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 pb-3">
+                    <div class="icon-box d-flex">
+                        <div class="icon-box-icon pe-3 pb-3">
+                            <svg class="price-tag">
+                                <use xlink:href="#price-tag" />
+                            </svg>
+                        </div>
+                        <div class="icon-box-content">
+                            <h3 class="card-title text-uppercase text-dark">Ежедневные предложения</h3>
+                            <p>Каждый день новая цена на товары, как правило дороже.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 pb-3">
+                    <div class="icon-box d-flex">
+                        <div class="icon-box-icon pe-3 pb-3">
+                            <svg class="shield-plus">
+                                <use xlink:href="#shield-plus" />
+                            </svg>
+                        </div>
+                        <div class="icon-box-content">
+                            <h3 class="card-title text-uppercase text-dark">100% безопасная оплата</h3>
+                            <p>Оплаты нет на сайте пока что.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% get_mobile_section %}
+    {% get_watch_section %}
+    {% get_laptop_section %}
+{% endblock content %}

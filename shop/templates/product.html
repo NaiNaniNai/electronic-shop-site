@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section product_section">
+        <div class="container">
+            <div class="product_section_title">
+                <div class="product_index_link">
+                    <a href="{% url "index" %}">
+                        <h2>Ministore</h2>
+                    </a>
+                </div>
+                <div class="product_catalog_link">
+                    <a href="{% url "catalog" %}">
+                        <h2>Категории</h2>
+                    </a>
+                </div>
+                <div class="product_category_compose_link">
+                    {% if not product.category %}
+                        <h2>Такого товара нет</h2>
+                    {% else %}
+                        <a href="{% url "composite_category" product.category.parent.slug %}">
+                            <h2>{{ product.category.parent.name }}</h2>
+                        </a>
+                        <a href="{% url "category" product.category.slug %}">
+                            <h2>{{ product.category.name }}</h2>
+                        </a>
+                        <h2>{{ product.name }}</h2>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="product_section_body">
+                <div class="product__image">
+                    <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="product">
+                </div>
+                <div class="product_main_info">
+                    <div class="product__name">
+                        <h2>Модель: {{ product.name }}</h2>
+                    </div>
+                    <div class="product__color">
+                        <h2>Цвет: {{ product.color }}</h2>
+                    </div>
+                    <div class="product__price">
+                        <span class="item-price text-primary {% if product.discount_price %}is_discount{% endif %}">Цена: {{ product.price }}₽</span>
+                        {% if product.discount_price %}
+                            <span class="product__discount text-primary">Скидка: {{ product.discount }}%</span>
+                            <span class="item-price text-primary">Цена со скидкой: {{ product.discount_price }}₽</span>
+                        {% endif %}
+                    </div>
+                    <div class="product_characteristics">
+                        {% if product.characteristics %}<h2>Характеристики устройства:</h2>{% endif %}
+                        {% for characteristic in product.characteristics.all %}
+                            <div class="product_characteristic">
+                                <div class="product_characteristic__name">
+                                    <h3>{{ characteristic.name }}:</h3>
+                                </div>
+                                <div class="product_characteristic__value">
+                                    <h3>{{ characteristic.value }}</h3>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="product_buy">
+                    <a class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Купить</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

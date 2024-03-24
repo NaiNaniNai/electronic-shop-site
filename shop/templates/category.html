@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section category_section">
+        <div class="container">
+            <div class="categories">
+                <div class="category_section_title">
+                    <div class="category_index_link">
+                        <a href="{% url "index" %}">
+                            <h2>Ministore</h2>
+                        </a>
+                    </div>
+                    <div class="catalog_link">
+                        <a href="{% url "catalog" %}">
+                            <h2>Категории</h2>
+                        </a>
+                    </div>
+                    <div class="category_compose_link">
+                        {% if not category %}
+                            <h2>Такой категории нет</h2>
+                        {% else %}
+                            <a href="{% url "composite_category" category.parent.slug %}">
+                                <h2>{{ category.parent.name }}</h2>
+                            </a>
+                            <h2>{{ category.name }}</h2>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="category_section_body">
+                    {% for product in products %}
+                        <div class="product">
+                            <div class="product__image">
+                                <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="product">
+                            </div>
+                            <div class="product__name">
+                                <a href="{% url "product" product.slug %}">
+                                    <h5>{{ product.name }}</h5>
+                                </a>
+                            </div>
+                            <div class="product__price">
+                                <span class="item-price text-primary {% if product.discount_price %}is_discount{% endif %}">{{ product.price }}₽</span>
+                                {% if product.discount_price %}
+                                    <span class="product__discount text-primary">Скидка: {{ product.discount }}%</span>
+                                    <span class="item-price text-primary">{{ product.discount_price }}₽</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

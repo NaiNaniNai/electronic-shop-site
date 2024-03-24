@@ -1,0 +1,163 @@
+/*---------------------
+  General style
+-----------------------*/
+
+.base_section {
+    padding-top: 8.5em;
+}
+
+.product__discount {
+    color: #13653f !important;
+}
+
+/*---------------------
+  Index Page
+-----------------------*/
+
+.banner-image img{
+    width: 500px !important;
+    height: 500px !important;
+}
+
+.product-item {
+    text-align: center;
+    display: block !important;
+}
+
+.product-item span {
+    display: block !important;
+}
+
+.is_discount {
+    text-decoration: line-through !important;
+    color: red !important;
+}
+
+/*---------------------
+  Catalog Page
+-----------------------*/
+
+.category_section {
+    margin-bottom: 10em;
+}
+
+.categories {
+    display: grid !important;
+}
+
+.category_section_title {
+    display: inline-flex;
+}
+
+.category_section_body {
+    padding-top: 2.5em;
+    display: inline-flex;
+}
+
+.category {
+    margin-left: 50px;
+}
+.category_section__title ::before {
+    content: "> ";
+}
+
+.category__image img {
+    width: 250px;
+    height: 250px;
+}
+
+.category__name {
+    padding-top: 1em;
+    text-align: center;
+}
+
+/*---------------------
+  Composite Category Page
+-----------------------*/
+
+.catalog_link h2::before {
+    content: "> ";
+}
+
+.category_link ::before {
+    content: "> ";
+}
+
+.available_categories {
+    text-align: center;
+}
+
+/*---------------------
+  Category Page
+-----------------------*/
+
+.category_compose_link {
+    display: inline-flex;
+}
+
+.category_compose_link h2::before {
+    content: "> ";
+}
+
+.product {
+    text-align: center;
+}
+
+.product__image img {
+    width: 250px;
+    height: 250px;
+}
+
+.product__price {
+    display: grid !important;
+}
+
+/*---------------------
+  Product Page
+-----------------------*/
+
+.product_section {
+    margin-bottom: 10em;
+}
+
+.product_section_title {
+    display: inline-flex;
+}
+
+.product_category_compose_link {
+    display: inline-flex;
+}
+
+.product_category_compose_link h2::before {
+    content: "> ";
+}
+
+.product_catalog_link h2::before {
+    content: "> ";
+}
+
+.product_section_body {
+    display: inline-flex;
+}
+
+.product_main_info {
+    margin-left: 2em;
+}
+
+.product__price span {
+    font-size: 24px;
+}
+
+.product_characteristic {
+    display: inline-flex;
+    margin-left: 1em;
+}
+
+.product_characteristic__value {
+    margin-left: 1em;
+}
+
+.product_buy {
+    margin-top: 5em;
+    margin-left: 5em;
+}
