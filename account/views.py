@@ -6,12 +6,14 @@ from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import FormView
 
-from account.forms import SingupForm, ConfirmResetPasswordForm
+from account.forms import SingupForm, ConfirmResetPasswordForm, EditProfileForm
 from account.service import (
     SingupService,
     ConfirmSigupService,
     ResetPasswordService,
     ConfirmResetPasswordService,
+    ProfileService,
+    EditProfileService,
 )
 
 
@@ -93,3 +95,31 @@ def logout_view(request):
 
     logout(request)
     return redirect(reverse("singin"))
+
+
+class ProfileView(View):
+    """View of user profile"""
+
+    def get(self, request, profile_slug):
+        service = ProfileService(request, profile_slug)
+        context = service.get()
+        return render(request, "profile.html", context)
+
+
+class EditProfileView(View):
+    """View of edit profile user"""
+
+    def get(self, request, profile_slug):
+        form = EditProfileForm
+        service = EditProfileService(request, form, profile_slug)
+        context = service.get()
+        return render(request, "profile_edit.html", context)
+
+    def post(self, request, profile_slug):
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            service = EditProfileService(request, form, profile_slug)
+            service.post()
+            return redirect(reverse("profile", kwargs={"profile_slug": profile_slug}))
+        messages.error(request, "Ошибка в номере!")
+        return redirect(reverse("profile", kwargs={"profile_slug": profile_slug}))

@@ -44,24 +44,32 @@
                             <a class="nav-link me-4" href="{% url "about_us" %}">О нас</a>
                         </li>
                         <li class="nav-item">
-                            <div class="user-items ps-5">
+                            <div class="user-items ps-5 right_links">
                                 <ul class="d-flex justify-content-end list-unstyled">
                                     {% if not user.is_authenticated %}
-                                        <li class="pe-3">
+                                        <li class="pe-3 singin_link">
                                             <a href={% url "singin" %}>
                                                 <svg class="user">
                                                     <use xlink:href="#user"></use>
                                                 </svg>
                                             </a>
                                         </li>
+                                    {% else %}
+                                        <li class="pe-3 profile_link">
+                                            <a href={% url "profile" user.slug %}>
+                                                <svg class="user">
+                                                    <use xlink:href="#user"></use>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url "cart" %}">
+                                                <svg class="cart">
+                                                    <use xlink:href="#cart"></use>
+                                                </svg>
+                                            </a>
+                                        </li>
                                     {% endif %}
-                                    <li>
-                                        <a href="{% url "cart" %}">
-                                            <svg class="cart">
-                                                <use xlink:href="#cart"></use>
-                                            </svg>
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </li>

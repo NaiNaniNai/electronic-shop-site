@@ -21,6 +21,35 @@
     background-color: #212529;
     border-color: #212529;
 }
+
+.message-error {
+    color: red;
+    font-size: 20px;
+}
+
+/*---------------------
+  Header
+-----------------------*/
+
+.right_links {
+    padding-top: 2em;
+    padding-right: 2em;
+}
+
+.profile_link {
+    position: absolute;
+    right: 0;
+    margin-right: 8em;
+    margin-top: -0.15em;
+}
+
+.singin_link {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 3em;
+    margin-top: 1.85em;
+}
 /*---------------------
   Index Page
 -----------------------*/
@@ -367,4 +396,32 @@
 
 .about_us {
     margin-top: 2em;
+}
+
+/*---------------------
+  Profile Page
+-----------------------*/
+
+.profile_section {
+    margin-left: 20em;
+    margin-bottom: 15em;
+}
+
+.profile_title {
+    margin-left: -20em;
+    text-align: center;
+}
+
+/*---------------------
+  Edit Profile Page
+-----------------------*/
+
+.edit_profile_section {
+    margin-left: 20em;
+    margin-bottom: 15em;
+}
+
+.edit_profile_title {
+    margin-left: -20em;
+    text-align: center;
 }

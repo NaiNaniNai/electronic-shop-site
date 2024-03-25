@@ -179,3 +179,45 @@ class ConfirmResetPasswordService:
     def change_password(self, user) -> None:
         new_password = self.form.cleaned_data.get("password")
         UserRepository.change_password(user, new_password)
+
+
+class ProfileService:
+    """Service for view profile user"""
+
+    def __init__(self, request, slug):
+        self.request = request
+        self.slug = slug
+
+    def get(self) -> dict:
+        user = UserRepository.get_from_request(self.request)
+        profile = UserRepository.get_by_slug(self.slug)
+        return {
+            "user": user,
+            "profile": profile,
+        }
+
+
+class EditProfileService:
+    """Service for view edit profile user"""
+
+    def __init__(self, request, form, slug):
+        self.request = request
+        self.form = form
+        self.slug = slug
+
+    def get(self):
+        user = UserRepository.get_from_request(self.request)
+        profile = UserRepository.get_by_slug(self.slug)
+
+        return {
+            "user": user,
+            "profile": profile,
+            "form": self.form,
+        }
+
+    def post(self):
+        user = UserRepository.get_by_slug(self.slug)
+        last_name = self.form.cleaned_data.get("last_name", None)
+        first_name = self.form.cleaned_data.get("first_name", None)
+        phone = self.form.cleaned_data.get("phone", None)
+        UserRepository.edit_profile(user, last_name, first_name, phone)

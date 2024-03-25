@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from phonenumber_field.formfields import PhoneNumberField
 
 UserModel = get_user_model()
 
@@ -48,3 +49,19 @@ class ConfirmResetPasswordForm(forms.ModelForm):
     class Meta:
         model = UserModel
         fields = ("password", "repeated_password")
+
+
+class EditProfileForm(forms.ModelForm):
+    """For of edit profile user"""
+
+    last_name = forms.CharField(label="Фамилия", required=False)
+    first_name = forms.CharField(label="Имя", required=False)
+    phone = PhoneNumberField(label="Номер телефона", required=False)
+
+    class Meta:
+        model = UserModel
+        fields = (
+            "last_name",
+            "first_name",
+            "phone",
+        )

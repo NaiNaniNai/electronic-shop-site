@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section edit_profile_section">
+        <div class="edit_profile_title">
+            <h2>
+                Редактирование профиля
+                {% if user != profile %}запрещено!{% endif %}
+            </h2>
+        </div>
+        {% if user == profile %}
+            <div class="edit_profile">
+                <div class="edit_profile_info">
+                    {% if profile.last_name %}
+                        <div class="profile_last_name">
+                            <h2>Фамилия: {{ profile.last_name }}</h2>
+                        </div>
+                    {% endif %}
+                    {% if profile.first_name %}
+                        <div class="profile_first_name">
+                            <h2>Имя: {{ profile.first_name }}</h2>
+                        </div>
+                    {% endif %}
+                    {% if profile.phone %}
+                        <div class="profile_number">
+                            <h2>Номер телефона: {{ profile.phone }}</h2>
+                        </div>
+                    {% endif %}
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="input__item">
+                            <i class="fa-solid fa-{{ field.label }}"></i>
+                            <div class="field_label">{{ field.label }}</div>
+                            <div class="field_input">{{ field }}</div>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="base_button singup_button">Изменить данные</button>
+                </form>
+            </div>
+        {% endif %}
+    </section>
+{% endblock content %}
