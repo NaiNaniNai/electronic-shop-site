@@ -24,3 +24,7 @@ class UserRepository:
     @staticmethod
     def get_from_request(request) -> User:
         return request.user
+
+    @staticmethod
+    def get_by_slug(slug: str) -> User:
+        return CustomUser.objects.filter(slug=slug).first()

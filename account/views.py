@@ -12,6 +12,7 @@ from account.service import (
     ConfirmSigupService,
     ResetPasswordService,
     ConfirmResetPasswordService,
+    ProfileService,
 )
 
 
@@ -93,3 +94,12 @@ def logout_view(request):
 
     logout(request)
     return redirect(reverse("singin"))
+
+
+class ProfileView(View):
+    """View of user profile"""
+
+    def get(self, request, profile_slug):
+        service = ProfileService(request, profile_slug)
+        context = service.get()
+        return render(request, "profile.html", context)

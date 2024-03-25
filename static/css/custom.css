@@ -368,3 +368,17 @@
 .about_us {
     margin-top: 2em;
 }
+
+/*---------------------
+  Profile Page
+-----------------------*/
+
+.profile_section {
+    margin-left: 20em;
+    margin-bottom: 15em;
+}
+
+.profile_title {
+    margin-left: -20em;
+    text-align: center;
+}

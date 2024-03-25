@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section profile_section">
+        <div class="profile_title">
+            <h2>
+                {% if not profile %}
+                    Нет такого нет профиля
+                {% else %}
+                    Профиль {{ profile.username }}
+                {% endif %}
+            </h2>
+        </div>
+        <div class="profile">
+            <div class="profile_username">
+                <h2>Имя пользователя: {{ profile.username }}</h2>
+            </div>
+            {% if user == profile %}
+                {% if profile.last_name %}
+                    <div class="profile_last_name">
+                        <h2>Фамилия: {{ profile.last_name }}</h2>
+                    </div>
+                {% endif %}
+                {% if profile.first_name %}
+                    <div class="profile_first_name">
+                        <h2>Имя: {{ profile.first_name }}</h2>
+                    </div>
+                {% endif %}
+                {% if profile.phone %}
+                    <div class="profile_number">
+                        <h2>Номер телефона: {{ profile.phone }}</h2>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% if user == profile %}
+            <div class="profile_edit">
+                <a href="url_edit_profile">
+                    <h6>Изменить данные</h6>
+                </a>
+            </div>
+        {% endif %}
+    </section>
+{% endblock content %}
