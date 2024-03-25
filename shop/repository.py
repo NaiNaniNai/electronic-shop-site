@@ -96,8 +96,11 @@ class UserCartRepository:
 
     @staticmethod
     def reduce_count_of_product(cart: UserCart) -> None:
-        cart.quantity -= 1
-        cart.save()
+        if cart.quantity == 1:
+            cart.delete()
+        else:
+            cart.quantity -= 1
+            cart.save()
 
 
 class DiscountProductRepository:
