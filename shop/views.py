@@ -10,6 +10,7 @@ from shop.service import (
     UserCartService,
     AddToUserCartService,
     ChangeCountProductService,
+    DiscountProductService,
 )
 
 
@@ -90,3 +91,12 @@ def increase_count_of_product(request, product_id):
         service = ChangeCountProductService(request, product_id)
         service.increase()
     return redirect(reverse("cart"))
+
+
+class DiscountProductView(View):
+    """View of product with discount"""
+
+    def get(self, request):
+        service = DiscountProductService(request)
+        context = service.get()
+        return render(request, "discount_products.html", context)

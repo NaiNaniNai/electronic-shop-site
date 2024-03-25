@@ -8,6 +8,7 @@ from shop.repository import (
     CategoryRepository,
     ProductRepository,
     UserCartRepository,
+    DiscountProductRepository,
 )
 
 
@@ -36,6 +37,13 @@ class IndexPageService:
         laptop_products = IndexPageRepository.get_laptop_product()
         return {
             "laptop_products": laptop_products,
+        }
+
+    def get_discount_product(self) -> dict:
+        discount_products = DiscountProductRepository.get_product()
+
+        return {
+            "discount_products": discount_products,
         }
 
 
@@ -154,3 +162,17 @@ class ChangeCountProductService:
         cart = UserCartRepository.get_by_product(user, product)
         if cart:
             UserCartRepository.increase_count_of_product(user, product)
+
+
+class DiscountProductService:
+    """Service for view discount product"""
+
+    def __init__(self, request):
+        self.request = request
+
+    def get(self) -> dict:
+        discount_products = DiscountProductRepository.get_product()
+
+        return {
+            "discount_products": discount_products,
+        }

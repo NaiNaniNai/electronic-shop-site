@@ -43,3 +43,11 @@ def get_laptop_section() -> dict:
     context = service.get_laptop_product()
 
     return context
+
+
+@register.inclusion_tag("tags/discount_product_section.html")
+def get_discount_product_section() -> dict:
+    service = IndexPageService()
+    context = service.get_discount_product()
+
+    return context

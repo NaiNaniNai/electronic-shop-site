@@ -22,4 +22,9 @@ urlpatterns = [
         views.increase_count_of_product,
         name="increase",
     ),
+    path(
+        "product_discount/",
+        views.DiscountProductView.as_view(),
+        name="discount_products",
+    ),
 ]

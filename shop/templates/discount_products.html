@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section discount_product_section">
+        <div class="discount_product_title">
+            <h2>Товары со скидкой</h2>
+        </div>
+        <div class="discount_products">
+            {% for product in discount_products %}
+                <div class="discount_product">
+                    <div class="discount_product_image">
+                        <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="product-image">
+                    </div>
+                    <div class="discount_product_info">
+                        <div class="discount_product_name">
+                            <a href="{% url "product" product.slug %}">
+                                <h3>{{ product.name }}</h3>
+                            </a>
+                        </div>
+                        <div class="discount_product_price is_discount">
+                            <h4>Цена без скидки: {{ product.price }}₽</h4>
+                        </div>
+                        <div class="discount_product_discount product__discount">
+                            <h4>Размер скидки: {{ product.discount }}%</h4>
+                        </div>
+                        <div class="discount_product_discount_price">
+                            <h4>Цена по скидке: {{ product.discount_price }}₽</h4>
+                        </div>
+                        <div class="discount_product_buy">
+                            <a class="btn btn-medium btn-dark text-uppercase btn-rounded-none"
+                               href="{% url "product" product.slug %}">Купить</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content %}
