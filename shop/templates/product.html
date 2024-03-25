@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="product_message">
-                {% for message in messages %}<div class="message_{{ message.tags }}">{{ message }}</div>{% endfor %}
+                {% for message in messages %}<div class="message-{{ message.tags }}">{{ message }}</div>{% endfor %}
             </div>
             {% if product %}
                 <div class="product_section_body">
@@ -64,8 +64,15 @@
                         </div>
                     </div>
                     <div class="product_buy">
-                        <a class="btn btn-medium btn-dark text-uppercase btn-rounded-none"
-                           href="{% url "add_to_cart" product.slug %}">Купить</a>
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-medium btn-dark text-uppercase btn-rounded-none"
+                               href="{% url "add_to_cart" product.slug %}">Купить</a>
+                        {% else %}
+                            <h4>Покупка доступна только авторизированным пользователям.</h4>
+                            <a href="{% url "singin" %}">
+                                <h5>Авторизоваться</h5>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
