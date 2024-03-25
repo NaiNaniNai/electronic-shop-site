@@ -38,9 +38,9 @@ services:
     image: redis
     restart: always
     container_name: "ministore_redis"
-    command: redis-server
+    command: sh -c "redis-server"
     ports:
-      - "127.0.0.1:16379:6379"
+      - "6379:6379"
 
   celery:
     build: .
