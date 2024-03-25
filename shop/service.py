@@ -1,9 +1,13 @@
+from django.contrib import messages
+
+from account.repository import UserRepository
 from shop.repository import (
     IndexPageRepository,
     CatalogRepository,
     CompositeCategoryRepository,
     CategoryRepository,
     ProductRepository,
+    UserCartRepository,
 )
 
 
@@ -92,3 +96,61 @@ class ProductService:
         return {
             "product": product,
         }
+
+
+class AddToUserCartService:
+    """Service for view add product to user's cart"""
+
+    def __init__(self, request, product_slug):
+        self.request = request
+        self.product_slug = product_slug
+
+    def get(self) -> messages:
+        user = UserRepository.get_from_request(self.request)
+        product = ProductRepository.get_by_slug(self.product_slug)
+        user_cart = UserCartRepository.get_by_product(user, product)
+        if not user_cart:
+            UserCartRepository.create_user_cart(user, product)
+        else:
+            UserCartRepository.increase_count_of_product(user, product)
+        return messages.success(self.request, "Вы добавили в корзину товар")
+
+
+class UserCartService:
+    """Service for view user's cart"""
+
+    def __init__(self, request):
+        self.request = request
+
+    def get(self) -> dict:
+        user = UserRepository.get_from_request(self.request)
+        carts = UserCartRepository.get_carts(user)
+        sum_carts = 0
+        for cart in carts:
+            sum_carts += cart.sum
+        return {
+            "carts": carts,
+            "sum_carts": sum_carts,
+        }
+
+
+class ChangeCountProductService:
+    """Service for change count of product in user's cart"""
+
+    def __init__(self, request, product_id):
+        self.request = request
+        self.product_id = product_id
+
+    def reduce(self):
+        user = UserRepository.get_from_request(self.request)
+        product = ProductRepository.get_by_id(self.product_id)
+        cart = UserCartRepository.get_by_product(user, product)
+        if cart:
+            UserCartRepository.reduce_count_of_product(cart)
+
+    def increase(self):
+        user = UserRepository.get_from_request(self.request)
+        product = ProductRepository.get_by_id(self.product_id)
+        cart = UserCartRepository.get_by_product(user, product)
+        if cart:
+            UserCartRepository.increase_count_of_product(user, product)

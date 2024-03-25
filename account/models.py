@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
         verbose_name_plural = "Пользователи"
 
     def __str__(self):
-        return f"{self.username} {self.email} {self.phone}"
+        return f"{self.username}"
 
     def save(self, *args, **kwargs):
         if not self.slug:

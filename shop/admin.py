@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from shop.models import Category, Characteristic, Product
+from shop.models import Category, Characteristic, Product, UserCart
 
 
 @admin.register(Category)
@@ -38,3 +38,14 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ("id",)
 
     prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.register(UserCart)
+class UserCartAdmin(admin.ModelAdmin):
+    """Model of user's cart in admin panel"""
+
+    list_display = ("user", "product", "quantity", "sum")
+    list_display_links = ("user", "product")
+    list_filter = ("user",)
+    search_fields = ("user",)
+    ordering = ("id",)

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 from shop.service import (
@@ -6,6 +7,9 @@ from shop.service import (
     CompositeCategoryService,
     CategoryService,
     ProductService,
+    UserCartService,
+    AddToUserCartService,
+    ChangeCountProductService,
 )
 
 
@@ -50,3 +54,39 @@ class ProductView(View):
         service = ProductService(request, slug)
         context = service.get()
         return render(request, "product.html", context)
+
+
+def add_to_cart(request, product_slug):
+    """Add product to user's cart"""
+
+    if request.method == "GET":
+        service = AddToUserCartService(request, product_slug)
+        service.get()
+    return redirect(reverse("product", kwargs={"slug": product_slug}))
+
+
+class UserCart(View):
+    """View of user's cart"""
+
+    def get(self, request):
+        service = UserCartService(request)
+        context = service.get()
+        return render(request, "cart.html", context)
+
+
+def reduce_count_of_product(request, product_id):
+    """Reduce count of product in user's cart"""
+
+    if request.method == "GET":
+        service = ChangeCountProductService(request, product_id)
+        service.reduce()
+    return redirect(reverse("cart"))
+
+
+def increase_count_of_product(request, product_id):
+    """Increase count of product in user's cart"""
+
+    if request.method == "GET":
+        service = ChangeCountProductService(request, product_id)
+        service.increase()
+    return redirect(reverse("cart"))

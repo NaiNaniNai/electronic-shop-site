@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="base_section cart_section">
+        <div class="cart_title">
+            <h2>Корзина</h2>
+        </div>
+        <div class="carts">
+            {% for cart in carts %}
+                <div class="cart">
+                    <div class="cart_product_image">
+                        <img src="{{ MEDIA_URL }} {{ cart.product.image.url }}"
+                             alt="product image">
+                    </div>
+                    <div class="cart_product_info">
+                        <div class="cart_product_name">
+                            <h2>{{ cart.product.name }}</h2>
+                        </div>
+                        <div class="cart_product_price">
+                            <h2>
+                                Цена товара:
+                                {% if cart.product.discount %}
+                                    {{ cart.product.discount_price }}
+                                {% else %}
+                                    {{ cart.product.price }}
+                                {% endif %}
+                            </h2>
+                        </div>
+                        <div class="cart_product_quantity">
+                            <h2>Количество товара: {{ cart.quantity }}</h2>
+                        </div>
+                        <div class="cart_sum">
+                            <h2>Сумма: {{ cart.sum }}</h2>
+                        </div>
+                    </div>
+                    <div class="cart_action">
+                        <h4>Количество товара: {{ cart.quantity }}</h4>
+                        <a class="base_a cart_a" href="{% url "reduce" cart.product.id %}">Уменьшить</a>
+                        <a class="base_a cart_a" href="{% url "increase" cart.product.id %}">Увеличить</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="carts_sum">
+            <h2>Всего к оплате: {{ sum_carts }}₽</h2>
+            <button class="base_button cart_button">Оплатить</button>
+        </div>
+    </section>
+{% endblock content %}
