@@ -5,6 +5,14 @@
             <h2>Корзина</h2>
         </div>
         <div class="carts">
+            {% if not carts %}
+                <div class="cart_info">
+                    <h2>В корзине нет товаров. Хотите добавить?</h2>
+                    <a href="{% url "catalog" %}">
+                        <h2>Перейти в магазин</h2>
+                    </a>
+                </div>
+            {% endif %}
             {% for cart in carts %}
                 <div class="cart">
                     <div class="cart_product_image">
@@ -40,9 +48,11 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="carts_sum">
-            <h2>Всего к оплате: {{ sum_carts }}₽</h2>
-            <button class="base_button cart_button">Оплатить</button>
-        </div>
+        {% if sum_carts %}
+            <div class="carts_sum">
+                <h2>Всего к оплате: {{ sum_carts }}₽</h2>
+                <button class="base_button cart_button">Оплатить</button>
+            </div>
+        {% endif %}
     </section>
 {% endblock content %}
