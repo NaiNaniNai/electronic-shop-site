@@ -16,6 +16,9 @@
             </div>
             {% if user == profile %}
                 {% if profile.last_name %}
+                    <div class="messages">
+                        {% for message in messages %}<div class="message-{{ message.tags }}">{{ message }}</div>{% endfor %}
+                    </div>
                     <div class="profile_last_name">
                         <h2>Фамилия: {{ profile.last_name }}</h2>
                     </div>
@@ -34,7 +37,7 @@
         </div>
         {% if user == profile %}
             <div class="profile_edit">
-                <a href="url_edit_profile">
+                <a href="{% url "edit_profile" profile.slug %}">
                     <h6>Изменить данные</h6>
                 </a>
             </div>

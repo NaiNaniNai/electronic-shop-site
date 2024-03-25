@@ -14,4 +14,9 @@ urlpatterns = [
         name="confirm_reset_password",
     ),
     path("profile/<str:profile_slug>/", views.ProfileView.as_view(), name="profile"),
+    path(
+        "profile/<str:profile_slug>/edit",
+        views.EditProfileView.as_view(),
+        name="edit_profile",
+    ),
 ]

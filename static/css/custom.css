@@ -21,6 +21,12 @@
     background-color: #212529;
     border-color: #212529;
 }
+
+.message-error {
+    color: red;
+    font-size: 20px;
+}
+
 /*---------------------
   Index Page
 -----------------------*/
@@ -379,6 +385,20 @@
 }
 
 .profile_title {
+    margin-left: -20em;
+    text-align: center;
+}
+
+/*---------------------
+  Edit Profile Page
+-----------------------*/
+
+.edit_profile_section {
+    margin-left: 20em;
+    margin-bottom: 15em;
+}
+
+.edit_profile_title {
     margin-left: -20em;
     text-align: center;
 }
