@@ -100,3 +100,10 @@ class DiscountProductView(View):
         service = DiscountProductService(request)
         context = service.get()
         return render(request, "discount_products.html", context)
+
+
+class AboutUsView(View):
+    """View of page about us"""
+
+    def get(self, request):
+        return render(request, "about_us.html")

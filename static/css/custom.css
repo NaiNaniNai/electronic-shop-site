@@ -350,3 +350,21 @@
     margin-left: 2.5em;
     padding-bottom: 0.5em;
 }
+
+/*---------------------
+  About Us Page
+-----------------------*/
+
+.about_us_section {
+    margin-left: 20em;
+    margin-bottom: 10em;
+}
+
+.about_us_title {
+    margin-left: -20em;
+    text-align: center;
+}
+
+.about_us {
+    margin-top: 2em;
+}

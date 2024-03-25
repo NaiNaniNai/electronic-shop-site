@@ -4,6 +4,7 @@ from shop import views
 
 urlpatterns = [
     path("", views.IndexPageView.as_view(), name="index"),
+    path("about_us/", views.AboutUsView.as_view(), name="about_us"),
     path("catalog/", views.CatalogView.as_view(), name="catalog"),
     path(
         "composite_category/<str:slug>/",
