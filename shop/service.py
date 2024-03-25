@@ -39,6 +39,13 @@ class IndexPageService:
             "laptop_products": laptop_products,
         }
 
+    def get_discount_product(self) -> dict:
+        discount_products = DiscountProductRepository.get_product()
+
+        return {
+            "discount_products": discount_products,
+        }
+
 
 class CatalogService:
     """Service for view catalog page"""
