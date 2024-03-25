@@ -98,3 +98,11 @@ class UserCartRepository:
     def reduce_count_of_product(cart: UserCart) -> None:
         cart.quantity -= 1
         cart.save()
+
+
+class DiscountProductRepository:
+    """Class for interacting with product model with discount"""
+
+    @staticmethod
+    def get_product() -> QuerySet[Product]:
+        return Product.objects.filter(discount_price__gte=1)

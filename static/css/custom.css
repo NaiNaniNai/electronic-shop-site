@@ -310,3 +310,43 @@
     margin-left: 1em;
     font-size: 24px;
 }
+
+/*---------------------
+  Discount Product Page
+-----------------------*/
+
+.discount_product_section {
+    margin-left: 20em;
+    margin-bottom: 10em;
+}
+
+.discount_product_title {
+    margin-left: -20em;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.discount_product {
+    display: inline-flex;
+}
+
+.discount_product_image img {
+    width: 250px;
+    height: 250px;
+}
+
+.discount_product_info {
+    position: relative;
+    margin-left: 2em;
+}
+
+.discount_product_discount_price {
+    color: #a9d18e;
+}
+
+.discount_product_buy {
+    position: absolute;
+    bottom: 0;
+    margin-left: 2.5em;
+    padding-bottom: 0.5em;
+}
