@@ -116,6 +116,11 @@ class AddToUserCartService:
     def get(self) -> messages:
         user = UserRepository.get_from_request(self.request)
         product = ProductRepository.get_by_slug(self.product_slug)
+        if not user.is_authenticated:
+            messages.error(self.request, "Вы не авторизованы")
+            return {
+                "is_authenticated": False,
+            }
         user_cart = UserCartRepository.get_by_product(user, product)
         if not user_cart:
             UserCartRepository.create_user_cart(user, product)
